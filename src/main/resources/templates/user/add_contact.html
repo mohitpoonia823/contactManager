@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <section>
+      
+        <div class="card me-3 ms-3">
+            <div class="card-body">
+                <h1 class="text-center">Add Contact</h1>
+                <div class="container mt-1">
+                   <div class="col-md-10 offset-1">
+                       <form action="#" th:object="${contact}"
+                       enctype="multipart/form-data"
+                       method="post"
+                       th:action="@{/user/process-contact}"
+                       class="mt-2">
+
+                           <div class="input-group ">
+                       <!-- first name -->
+                       <div class="input-group">
+                        <i class="input-group-text pt-2 fas fa-plus"></i>     
+                      <input required type="text" name="cname" class="form-control" id="firstname" placeholder="enter name" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <!-- seconde name -->
+                      <div class="input-group mt-3">
+                        <i class="input-group-text pt-2 fas fa-user-alt"></i>     
+                      <input type="text" name="secondName" class="form-control" id="secondname" placeholder="enter nick name" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <!-- phone -->
+                      <div class="input-group mt-3">
+                        <i class="input-group-text pt-2 fas fa-phone"></i>     
+                      <input required  min="10" type="number" name="phone" class="form-control" id="phone" placeholder="enter phone number" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+
+                       <!-- email -->
+                       <div class="input-group mt-3">
+                        <i class="input-group-text pt-2 fas fa-envelope"></i>     
+                      <input  required type="email" name="email" class="form-control" id="email" placeholder="enter your email" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+
+                      <!-- work -->
+                      <div class="input-group mt-3">
+                        <i class="input-group-text pt-2 fas fa-briefcase"></i>     
+                      <input required type="text" name="work" class="form-control" id="work" placeholder="enter work here" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                     <!-- description-->
+                      <div class="input-group mt-3">
+                        <textarea name="description" style="width: 100%;" id="description" placeholder="Describe here..." class="form-control" rows="10" ></textarea>    
+                      </div>
+
+                      <!-- image -->
+                      <div class="custom-file mt-3">
+                          <input type="file" class="form-control" name="profileimage" id="image"/>
+                      </div>
+
+                      <!-- Add CPntact button -->
+                      <div class="container text-center mt-5" >
+                          <button type="submit" class="btn btn-outline-success">Save</button>
+                      </div>
+                            
+                           </div>
+
+
+                       </form>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+              selector: '#description'
+            });
+          </script>
+    </section>
+</body>
+</html>

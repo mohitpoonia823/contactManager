@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="my-card">
+                <div class="container text-center">
+                    <img  style="width: 100px;" th:src="@{/image/contact-form.png}" alt="" srcset="">
+
+                </div>
+              <h1 class="text-center">Register Here!!</h1>
+              <div th:if=${session.message} th:classappend=${session.message.type} class="alert " role="alert">
+               <p class="text-center" th:text=${session.message.content}></p>
+              </div>
+              <form novalidate action="" th:action="@{/do_register}" method="post" th:object=${user}>
+                <!-- name field -->
+                <div class="form-group">
+                  <label for="name_field" class="form-label"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    name="uName"
+                    th:value=${user.uName}
+                    class="form-control field"
+                    th:classappend="${#fields.hasErrors('uName')?'is-invalid':''}"
+                    id="exampleFormControlInput1"
+                    placeholder="Enter your name"
+                    required
+                  />
+                  <div class="invalid-feedback mb-2" th:each="e : ${#fields.errors('uName')}" th:text="${e}" >
+                    Please provide a valid city.
+                  </div>
+                </div>
+                <!-- email field -->
+                <div class="form-group">
+                  <label for="email_field" class="form-label"
+                    >Your Email</label
+                  >
+                  <input
+                    type="email"
+                    name="uemail"
+                    th:value=${user.uemail}
+                    class="form-control field"
+                    id="email"
+                    placeholder="example12@gmail.com"
+                    required
+                  />
+                </div>
+
+                <!-- password field -->
+                <div class="form-group mb-3">
+                  <label for="password_field" class="form-label"
+                    >Password</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control field"
+                    id="password"
+                    placeholder="a$#A12"
+                    required
+                  />
+                </div>
+
+                <!-- about field -->
+                <div class="form-group mb-3">
+                    <textarea th:text=${user.about} name="about" placeholder="Enter something about you" rows="4" class="form-control" style="resize: none;"></textarea>
+                </div>
+
+                <!-- terms and conditions agreement -->
+                <div class="form-group form-check mb-2">
+                    <input type="checkbox"
+                    name="agreement"
+                    class="form-check-input"
+                    id="agreement"
+                    />
+                    <label for="agreement">Accept terms and conditions</label>
+                </div>
+
+                <!-- buttons -->
+                <div class="container text-center ">
+                    <button type="submit" class="btn bg-primary  text-white">Submit</button>
+                    <button type="reset" class="btn btn-warning  text-white">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
